@@ -45,6 +45,119 @@ Request (POST /analyze-ticket)
 
 ---
 
+                                 ┌──────────────────────────────┐
+                                 │      Client /       │
+                                 │  POST /analyze-ticket        │
+                                 └──────────────┬───────────────┘
+                                                │
+                                                ▼
+                                 ┌──────────────────────────────┐
+                                 │       FastAPI Endpoint       │
+                                 │      Pydantic Validation     │
+                                 └──────────────┬───────────────┘
+                                                │
+                                                ▼
+                    ┌─────────────────────────────────────────────────────┐
+                    │           Rule-Based Investigation Engine           │
+                    ├─────────────────────────────────────────────────────┤
+                    │                                                     │
+                    │  1. Claim Extraction                                │
+                    │     • Amount                                        │
+                    │     • Counterparty                                  │
+                    │     • Action                                        │
+                    │     • Outcome                                       │
+                    │     • Timestamp                                     │
+                    │                                                     │
+                    │  2. Transaction Matching                            │
+                    │     • Deterministic Scoring                         │
+                    │                                                     │
+                    │  3. Pattern Analysis                                │
+                    │     • Established Recipient Detection               │
+                    │     • Ambiguity Detection                           │
+                    │     • Duplicate Detection                           │
+                    │                                                     │
+                    │  4. Evidence Evaluation                             │
+                    │     • Primary Verdict                               │
+                    │                                                     │
+                    │  5. Classification                                  │
+                    │     • Derived Decision                              │
+                    │                                                     │
+                    │  6. Response Builder                                │
+                    │     • Agent Summary                                 │
+                    │     • Customer Reply                                │
+                    │     • Confidence Score                              │
+                    │                                                     │
+                    └─────────────────────┬───────────────────────────────┘
+                                          │
+                       Confidence ≥ 0.85? │
+                        ┌─────────────────┴─────────────────┐
+                        │                                   │
+                      YES                                  NO
+                        │                                   │
+                        ▼                                   ▼
+          ┌──────────────────────────┐      ┌─────────────────────────────────┐
+          │ Return Rule-Based Result │      │      LLM Enhancement Layer      │
+          └──────────────────────────┘      ├─────────────────────────────────┤
+                                            │ Primary Model                   │
+                                            │ • Qwen3-Next-80B               │
+                                            │                                 │
+                                            │ Fallback Model                  │
+                                            │ • Secondary Qwen Instance       │
+                                            │                                 │
+                                            │ Final Fallback                  │
+                                            │ • Rule-Based Response           │
+                                            └──────────────┬──────────────────┘
+                                                           │
+                                                           ▼
+                           ┌─────────────────────────────────────────────────┐
+                           │         Triple-Layer Safety Guardrails          │
+                           ├─────────────────────────────────────────────────┤
+                           │ Layer 1 : Prompt Injection Scanner              │
+                           │ Layer 2 : Decision Authorization Guard          │
+                           │ Layer 3 : Output Safety Filter                  │
+                           └──────────────────────┬──────────────────────────┘
+                                                  │
+                                                  ▼
+                                   ┌────────────────────────────┐
+                                   │     JSON API Response      │
+                                   │ • Evidence Verdict         │
+                                   │ • Classification           │
+                                   │ • Confidence               │
+                                   │ • Agent Summary            │
+                                   │ • Customer Reply           │
+                                   │ • Supporting Evidence      │
+                                   └────────────────────────────┘
+
+ High Level Flow:
+```
+Request (POST /analyze-ticket)
+            │
+            ▼
+  Pydantic Validation
+            │
+            ▼
+ Rule-Based Investigation
+            │
+      ┌─────┴─────┐
+      │           │
+      ▼           ▼
+ High        Low Confidence
+Confidence     (< 0.85)
+ (≥ 0.85)         │
+      │           ▼
+      │    LLM Enhancement
+      │           │
+      │           ▼
+      │   Safety Guardrails
+      │           │
+      └──────┬────┘
+             ▼
+    Final JSON Response
+```
+
+Poridi Aws Deployment:
+![alt text](image.png)
+
 ## Setup & Run
 
 ### Prerequisites
