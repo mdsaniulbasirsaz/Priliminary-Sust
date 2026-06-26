@@ -1,0 +1,16 @@
+__pycache__
+.pytest_cache
+*.pyc
+.env
+.env.example
+.git
+.pytest_cache
+Plan
+Skills
+ProblemStatement
+Evaluation Strategy For Top 40th
+Sample-Case.json
+sample_output.json
+validate_cases.py
+tests
+*.md
