@@ -25,7 +25,18 @@ venv/
 .DS_Store
 Thumbs.db
 
-# Testing
+# Terraform
+.terraform/
+key.pem
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.lock.hcl
 .pytest_cache/
 .coverage
 htmlcov/
