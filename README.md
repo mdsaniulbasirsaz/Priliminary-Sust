@@ -1,6 +1,9 @@
 # QueueStorm Investigator — AI/API SupportOps Challenge
 
 Live API Docs: https://priliminary-sust.onrender.com/docs
+Docker Hub: `docker pull saniu/sust-investigator`
+Run: `docker run -p 8000:8000 --env-file .env saniu/sust-investigator`
+
 
 A **complaint investigation** service for the SUST CSE Carnival 2026 Codex Community Hackathon. It is a **complaint investigator** that cross-references customer claims against transaction history to determine what is true.
 
