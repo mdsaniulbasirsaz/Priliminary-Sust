@@ -111,6 +111,7 @@ Returns `{"status": "ok"}` within 60s of startup.
   "language": "en",
   "channel": "in_app_chat",
   "user_type": "customer",
+  "campaign_context": "boishakh_bonanza_day_1",
   "transaction_history": [
     {
       "transaction_id": "TXN-9101",
